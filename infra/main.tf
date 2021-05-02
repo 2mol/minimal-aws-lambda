@@ -3,17 +3,14 @@ provider "aws" {
 }
 
 resource "aws_lambda_function" "function" {
-  # tags             = var.tags
   function_name = "function"
   handler       = "dummy.handler"
   runtime       = "python3.8"
   role          = aws_iam_role.iam_role.arn
   filename      = "dummy_lambda.zip"
-  # source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 }
 
 resource "aws_iam_role" "iam_role" {
-  # tags        = var.tags
   name        = "iam_role"
   path        = "/"
   description = "Allows Lambda Function to call AWS services on your behalf."
